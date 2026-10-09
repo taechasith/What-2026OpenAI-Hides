@@ -19,6 +19,7 @@ FILES = {
     ROOT / "figures" / "family_size_distribution.pdf": "figures/family_size_distribution.pdf",
     ROOT / "figures" / "trace_text_volume.pdf": "figures/trace_text_volume.pdf",
     ROOT / "figures" / "surrogate_patching.pdf": "figures/surrogate_patching.pdf",
+    ROOT / "figures" / "causal_analysis_workflow.png": "figures/causal_analysis_workflow.png",
 }
 
 

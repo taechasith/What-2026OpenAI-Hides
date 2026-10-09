@@ -22,12 +22,12 @@ represented as such.
 | Parser inclusion set | PASS | 372 families, 719 linked manuscripts, 10 named released summaries; no parse warnings. |
 | Statistical analysis | PASS | Seed 20261009; Mann--Whitney U = 16,150, p = 0.638; 10,000-draw permutation p = 0.665; rank-biserial r = 0.03. |
 | Literature expansion | PASS | Bibliography expanded from 7 to 28 cited primary/research sources spanning circuits, causal interventions, circuit evaluation, features, and reasoning faithfulness. |
-| Figures | PASS | Four data-derived PDF/PNG figures generated; the surrogate figure now reports four seed-level estimates and 95% Student-t intervals. |
+| Figures | PASS | Four data-derived PDF/PNG figures were generated, and a user-supplied conceptual overview is included as Figure 1 before the abstract. The surrogate figure reports four seed-level estimates and 95% Student-t intervals. |
 | Multi-seed causal simulation | PASS, surrogate only | Four fixed initialization seeds each fit the 100-pair modular-addition table at 100% training accuracy. Layer 1 left-addend recovery was 0.36 (95% t CI [0.20, 0.52]); the contextual operator control was 0.00. Seed-level records, summaries, and the paired contrast are in `data/derived/surrogate_patching_seed.csv`, `surrogate_patching_summary.csv`, and `surrogate_primary_contrast.json`. |
 | Unit tests | PASS | `python -m pytest -q` completed: 4 passed, including a seed-level uncertainty calculation. |
 | Local manuscript build | PASS | Tectonic 0.17.0 built `paper/main.pdf`: 9 pages; 28 resolved bibliography entries; no unresolved citations, undefined controls, missing characters, or overfull/underfull boxes in the final log. |
-| Visual PDF QA | PASS | All nine rendered manuscript pages were inspected after the science extension; title, author/affiliation, formula, four-seed uncertainty figure, captions, section order, and bibliography were legible. |
-| arXiv archive contents | PASS | `release/arxiv_submission.zip` contains exactly 10 LaTeX, generated-result, figure, and registered-protocol inputs, with no corpus files; SHA-256 `FA830A3C1A48D88FB0AE9D726AF80C9D92DBC0329B10867B258B7D189FC3A382`. |
+| Visual PDF QA | PASS | All nine rendered manuscript pages were inspected after adding the overview; title, author/affiliation, Figure 1 before the abstract, formula, four-seed uncertainty figure, captions, section order, and bibliography were legible. |
+| arXiv archive contents | PASS | `release/arxiv_submission.zip` contains exactly 11 LaTeX, generated-result, figure, and registered-protocol inputs, including the user-supplied Figure 1 image and no corpus files; SHA-256 `6FF0B68C514820CE9E1323B8E0A3FD9F29038F0ED0ABF98266AB7BC4A72981A3`. |
 | Clean archive build | PASS | A fresh archive extraction compiled independently with Tectonic to 9 pages; its PDF title and body title match the requested title exactly and its final log has zero layout or unresolved-reference markers. |
 
 ## Scientific boundaries and open gates

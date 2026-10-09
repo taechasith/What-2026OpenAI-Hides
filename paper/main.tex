@@ -26,6 +26,17 @@ School of Engineering, University of the Thai Chamber of Commerce, Thailand}
 \begin{document}
 \maketitle
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{causal_analysis_workflow.png}
+\caption{Overall conceptual workflow. The public OpenAI mathematics release
+supports an artifact audit but does not expose model internals. We therefore
+conduct causal residual-stream interventions only in separately trained,
+inspectable toy Transformers, then summarize recovery across four independent
+initialization seeds.}
+\label{fig:overview}
+\end{figure}
+
 \begin{abstract}
 OpenAI's public 2026 mathematics release is an unusually rich public record:
 mathematical manuscripts, source artifacts, Lean materials, and ten abridged
