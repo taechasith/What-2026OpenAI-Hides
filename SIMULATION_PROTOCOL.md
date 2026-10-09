@@ -1,7 +1,7 @@
 # Registered extension: multi-seed causal surrogate simulation
 
-**Version:** `2026-10-09-multiseed-v1`  
-**Status:** fixed before execution  
+**Version:** `2026-10-09-multiseed-v1`
+**Status:** fixed before execution
 **Scope:** inspectable surrogate only; no claim about OpenAI model internals
 
 ## Purpose and boundary

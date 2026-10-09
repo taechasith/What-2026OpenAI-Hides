@@ -27,7 +27,7 @@ represented as such.
 | Unit tests | PASS | `python -m pytest -q` completed: 4 passed, including a seed-level uncertainty calculation. |
 | Local manuscript build | PASS | Tectonic 0.17.0 built `paper/main.pdf`: 9 pages; 28 resolved bibliography entries; no unresolved citations, undefined controls, missing characters, or overfull/underfull boxes in the final log. |
 | Visual PDF QA | PASS | All nine rendered manuscript pages were inspected after the science extension; title, author/affiliation, formula, four-seed uncertainty figure, captions, section order, and bibliography were legible. |
-| arXiv archive contents | PASS | `release/arxiv_submission.zip` contains exactly 10 LaTeX, generated-result, figure, and registered-protocol inputs, with no corpus files; SHA-256 `6E23B60137383BE38780233E1E3B197808A8DA5FC06C10EEDAE41BE99AE5B83B`. |
+| arXiv archive contents | PASS | `release/arxiv_submission.zip` contains exactly 10 LaTeX, generated-result, figure, and registered-protocol inputs, with no corpus files; SHA-256 `13729671F2C8426CD3D7EE210FD10401E8CBD37C6862257E13F1B516BD484FB9`. |
 | Clean archive build | PASS | A fresh archive extraction compiled independently with Tectonic to 9 pages; its PDF title and body title match the requested title exactly and its final log has zero layout or unresolved-reference markers. |
 
 ## Scientific boundaries and open gates
