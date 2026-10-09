@@ -27,6 +27,16 @@ No family/manuscript is excluded for surprising content. Parser failures are
 reported in `data/derived/parse_warnings.csv`. Any new analysis after this file
 is committed is exploratory and must be labelled as such.
 
+## Registered post-analysis extension
+
+The corpus estimands above remain frozen. Before executing the added
+multi-seed surrogate simulation, its design, seeds, uncertainty unit,
+corruption, controls, formula, stopping rule, and claim boundary were fixed in
+`SIMULATION_PROTOCOL.md`. This extension is exploratory relative to the
+original corpus preregistration, but confirmatory within its separately
+registered surrogate protocol. It does not alter RQ1--RQ3 or turn public
+OpenAI outputs into evidence about model internals.
+
 ## Stopping rule
 
 Run once against the pinned release. Re-runs must reproduce the same manifest

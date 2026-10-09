@@ -14,6 +14,7 @@ FILES = {
     ROOT / "paper" / "generated" / "results_macros.tex": "generated/results_macros.tex",
     ROOT / "paper" / "generated" / "surrogate_macros.tex": "generated/surrogate_macros.tex",
     ROOT / "paper" / "generated" / "coverage_table.tex": "generated/coverage_table.tex",
+    ROOT / "SIMULATION_PROTOCOL.md": "SIMULATION_PROTOCOL.md",
     ROOT / "figures" / "artifact_coverage.pdf": "figures/artifact_coverage.pdf",
     ROOT / "figures" / "family_size_distribution.pdf": "figures/family_size_distribution.pdf",
     ROOT / "figures" / "trace_text_volume.pdf": "figures/trace_text_volume.pdf",

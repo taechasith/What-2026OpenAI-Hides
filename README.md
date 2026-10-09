@@ -2,7 +2,7 @@
 
 This repository contains the reproducible empirical study:
 
-> **Reverse-Engineering Mathematical Reasoning from OpenAI's 2026 Mathematics
+> **Reverse-Engineering Mathematical Reasoning from OpenAI’s 2026 Mathematics
 > Corpus: Implications for Mechanistic Interpretability**
 > Taechasith Kangkhuntod, School of Engineering, University of the Thai
 > Chamber of Commerce, Thailand
@@ -16,9 +16,9 @@ structure, linked-artifact availability, Lean scope-document availability, and
 the ten explicitly released abridged reasoning summaries.
 
 This is **not** a claim to inspect OpenAI model weights, activations, hidden
-reasoning, or neural circuits. The separate toy-surrogate experiment is a real
-causal residual-stream patching demonstration on a fully inspectable model; it
-does not transfer any result to an OpenAI model.
+reasoning, or neural circuits. The separate surrogate experiment is a real,
+four-seed causal residual-stream-patching simulation on fully inspectable
+models; it does not transfer any result to an OpenAI model.
 
 ## Results at the pinned release
 
@@ -31,9 +31,14 @@ does not transfer any result to an OpenAI model.
 - The preregistered family-size comparison is small and non-significant
   (Mann--Whitney p = 0.638; 10,000-draw label permutation p = 0.665;
   rank-biserial r = 0.03).
+- Four independently initialized toy Transformers fit the frozen 100-item
+  modular-addition table exactly. Their Layer 1 left-addend patches recovered
+  0.36 of the clean-answer-logit gap (95% t CI [0.20, 0.52]); the result is a
+  surrogate-methods demonstration, not a claim about OpenAI.
 
 See `RESEARCH_PROTOCOL.md`, `PREREGISTRATION.md`, and
-`reports/FINAL_AUDIT.md` for scope, method, and audit status.
+`SIMULATION_PROTOCOL.md`, and `reports/FINAL_AUDIT.md` for scope, method,
+and audit status.
 
 ## Reproduce
 
@@ -63,7 +68,8 @@ python scripts\build_release.py
 
 ## Repository layout
 
-- `src/`: deterministic parser, statistics, figures, and surrogate test.
+- `src/`: deterministic parser, statistics, figures, and multi-seed surrogate
+  simulation.
 - `data/derived/`: generated tables, statistics, and provenance manifest.
 - `figures/`: generated publication figures.
 - `paper/`: LaTeX manuscript, generated macros, bibliography, and PDF.

@@ -1,0 +1,26 @@
+{
+  "contrast": "Layer 1 left-addend recovery minus Layer 1 operator recovery",
+  "per_seed_effects": [
+    {
+      "seed": 20261009,
+      "effect": 0.37631878472166136
+    },
+    {
+      "seed": 20261010,
+      "effect": 0.4468573311751243
+    },
+    {
+      "seed": 20261011,
+      "effect": 0.4034006742258498
+    },
+    {
+      "seed": 20261012,
+      "effect": 0.21693896141368896
+    }
+  ],
+  "n_models": 4,
+  "mean": 0.3608789378840811,
+  "sample_sd": 0.10026213620819706,
+  "ci95_low": 0.20133950543048937,
+  "ci95_high": 0.5204183703376728
+}

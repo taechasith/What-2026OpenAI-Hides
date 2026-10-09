@@ -10,12 +10,15 @@
 \usepackage{amsmath}
 \usepackage{hyperref}
 \usepackage[numbers,sort&compress]{natbib}
-\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue}
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue,
+  pdftitle={Reverse-Engineering Mathematical Reasoning from OpenAI’s 2026 Mathematics Corpus: Implications for Mechanistic Interpretability}}
+\pdfstringdefDisableCommands{\def\textquoteright{'}}
+\Urlmuskip=0mu plus 1mu\relax
 \graphicspath{{figures/}{../figures/}}
 \input{generated/results_macros.tex}
 \input{generated/surrogate_macros.tex}
 
-\title{Reverse-Engineering Mathematical Reasoning from OpenAI's 2026 Mathematics Corpus: Implications for Mechanistic Interpretability}
+\title{Reverse-Engineering Mathematical Reasoning from OpenAI\textquoteright{}s 2026 Mathematics Corpus: Implications for Mechanistic Interpretability}
 \author{Taechasith Kangkhuntod\\
 School of Engineering, University of the Thai Chamber of Commerce, Thailand}
 \date{October 2026}
@@ -37,10 +40,11 @@ does not meaningfully differ by scope-document availability (Mann--Whitney
 $p=\MannWhitneyP$; permutation $p=\PermutationP$; rank-biserial
 $r=\RankBiserial$). These observations do not reverse-engineer neural
 mechanisms. To make that boundary operational, we separately conduct a causal
-residual-stream patching experiment in a fully inspectable toy Transformer.
-That surrogate result demonstrates an intervention method, not a property of
-an OpenAI model. We release code, provenance hashes, derived data, figures,
-and an arXiv-ready source package.
+residual-stream patching simulation in \SurrogateSeedCount{} fully
+inspectable toy Transformers. That surrogate result demonstrates an
+intervention method with seed-level uncertainty, not a property of an OpenAI
+model. We release code, provenance hashes, derived data, figures, and an
+arXiv-ready source package.
 \end{abstract}
 
 \section{Introduction}
@@ -59,7 +63,45 @@ public record of model-assisted mathematics, but it should not be read as a
 transparent window into neural computation. We provide a pinned inventory,
 a preregistered artifact-level comparison, and descriptive measurements of
 the published summaries. We then separately demonstrate a genuine causal
-mechanistic-interpretablity intervention in a toy model.
+mechanistic-interpretability intervention in a toy model.
+
+\section{Scientific context: mechanistic interpretability}
+
+Mechanistic interpretability seeks explanations expressed in a model's actual
+computations: features, states, edges, and algorithms that can be
+interrogated and causally manipulated. The circuit perspective developed from
+feature visualization and transformer-circuit analyses
+\citep{olah2018building,olah2020zoom,elhage2021framework} is deliberately
+stronger than a useful behavioral description. It asks whether a proposed
+mechanism predicts the effects of intervention.
+
+There are instructive examples in accessible models. Work on induction heads,
+modular-addition grokking, indirect-object identification, and a GPT-2
+greater-than capability combines structure, activations, and interventions to
+propose circuit-level accounts
+\citep{olsson2022induction,nanda2023grokking,wang2023ioi,hanna2023greaterthan}.
+Those successes are neither a license to infer circuits from prose nor a
+guarantee that a localized explanation is complete. They instead specify the
+kind of evidence missing for an unreleased model.
+
+Causal tools make the distinction concrete. Causal mediation, activation and
+path patching, model editing, automated circuit discovery, and causal
+scrubbing each test particular counterfactual claims
+\citep{vig2020causal,meng2022rome,geiger2025causal,zhang2023patching,goldowskydill2023path,conmy2023acdc,chan2022causal}.
+They also expose failure modes: an ablated computation can be compensated by
+others, and a single intervention can overstate a component's explanatory
+role \citep{mcgrath2023hydra,finlayson2021causal,bau2019neurons}.
+
+Feature-level approaches address the fact that individual neurons can mix
+several concepts. Toy superposition models, dictionary learning, and sparse
+autoencoders supply hypotheses about more useful feature bases
+\citep{elhage2022toy,bricken2023monosemantic,cunningham2023sparse,templeton2024scaling}.
+In parallel, chain-of-thought and process-supervision research clarifies why
+visible reasoning can aid evaluation while remaining distinct from the latent
+computation that determined an answer
+\citep{wei2022cot,lyu2023faithful,turpin2023language,lanham2023measuring,lightman2023verify}.
+Our simulation adopts the causal-intervention side of this program while
+making no claim to have recovered an arithmetic circuit.
 
 \section{Evidence boundary}
 
@@ -180,36 +222,54 @@ or faithfulness metric.}
 
 \section{Causal intervention in an inspectable surrogate}
 
-To distinguish output analysis from a mechanistic experiment, we trained a
-\SurrogateParameters-parameter, two-layer, three-head Transformer from scratch
-on all 100 ordered pairs of addition modulo 10. Its frozen vocabulary has
-digits, a plus token, and an equals token; it reached \SurrogateAccuracy{}
-training accuracy. This deliberately small model is not a benchmark of
-mathematical reasoning.
+To distinguish output analysis from a mechanistic experiment, we preregistered
+the extension in \texttt{SIMULATION\_PROTOCOL.md} before running
+\SurrogateSeedCount{} independently initialized
+\SurrogateParameters-parameter, two-layer, three-head Transformers from
+scratch on all 100 ordered pairs of addition modulo 10. Their frozen
+vocabulary has digits, a plus token, and an equals token; every seed reached
+\SurrogateAccuracy{} training accuracy. This deliberately small, in-sample
+task is not a benchmark of mathematical reasoning or generalization.
 
 For each clean prompt $(a,+,b,=)$, we corrupted the left addend with
 $a+1 \pmod {10}$. At each layer and position, we replaced the corrupted
 post-block residual vector with the clean vector and measured recovery of the
-clean answer logit relative to clean and corrupted baselines. This is a causal
-state intervention. Patching the first-layer left-addend position recovered
-\LayerOneLeftRecovery{} of the clean-logit gap on average; patching the final
-equals position at layer two recovered \LayerTwoEqualsRecovery{}
-(Figure~\ref{fig:surrogate}). The latter is expected because it is the final
-residual position read by the unembedding layer.
+clean answer logit relative to clean and corrupted baselines. This is an
+activation-patching intervention \citep{zhang2023patching,geiger2025causal}.
+For prompt $i$, recovery is
+\[
+ R_i = \frac{\ell_y(\mathrm{patched},i)-\ell_y(\mathrm{corrupt},i)}
+ {\ell_y(\mathrm{clean},i)-\ell_y(\mathrm{corrupt},i)}.
+\]
+Near-zero denominators are excluded under the fixed protocol. We average
+$R_i$ within model and use the four initialization seeds as the uncertainty
+unit, reporting two-sided $t$ intervals with three degrees of freedom.
+
+Layer 1 left-addend patching recovered \LayerOneLeftRecovery{} of the
+clean-logit gap (95\% CI \LayerOneLeftCI{}), compared with
+\LayerOneOperatorRecovery{} (95\% CI \LayerOneOperatorCI{}) for the
+contextual operator control. The preregistered paired difference is
+\LayerOnePrimaryDifference{} (95\% CI \LayerOnePrimaryDifferenceCI{}).
+Layer 2 equals-position patching recovered \LayerTwoEqualsRecovery{}
+(95\% CI \LayerTwoEqualsCI{}; Figure~\ref{fig:surrogate}). The last result is
+an outcome-position positive control because the unembedding reads that final
+residual position; it is not evidence for a distributed arithmetic circuit.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=.88\linewidth]{surrogate_patching.pdf}
-\caption{Causal residual-stream patching in the inspectable toy Transformer.
-Cells show mean recovery of the clean answer logit after inserting a clean
-residual state into a left-addend-corrupted run. This figure is separate from
-the OpenAI artifact audit.}
+\caption{Four-seed causal residual-stream patching in the inspectable toy
+Transformer. The heat map gives mean clean-answer-logit recovery after
+inserting a clean residual state into a left-addend-corrupted run; points
+show the mean and two-sided 95\% Student-$t$ interval across four independent
+initializations. This figure is separate from the OpenAI artifact audit.}
 \label{fig:surrogate}
 \end{figure}
 
-The surrogate result demonstrates a working causal-intervention procedure. It
-does not establish a reusable arithmetic circuit, generalization beyond its
-training table, or any property of OpenAI's model.
+The surrogate result demonstrates a repeatable causal-intervention procedure.
+It does not establish a reusable arithmetic circuit, necessity or sufficiency
+of any site, generalization beyond its training table, or any property of
+OpenAI's model.
 
 \section{Limitations and research agenda}
 
@@ -225,7 +285,9 @@ A credible next study should choose an open-weight mathematical model, freeze
 prompts and scoring, collect clean and controlled-corruption runs, and test
 causal effects through activation patching, path patching, ablation, or feature
 intervention across seeds and held-out tasks. It should explicitly separate a
-visible rationale from both the answer and the latent state.
+visible rationale from both the answer and the latent state, and test proposed
+circuits against multi-site or resampling interventions rather than treating a
+single patching map as confirmation.
 
 \section{Conclusion}
 

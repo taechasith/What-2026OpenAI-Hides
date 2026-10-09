@@ -1,6 +1,13 @@
 {
-  "experiment": "tiny transformer trained from scratch on addition modulo 10",
-  "seed": 20261009,
+  "experiment": "four-seed tiny Transformer causal residual-stream patching on addition modulo 10",
+  "simulation_protocol": "SIMULATION_PROTOCOL.md",
+  "seeds": [
+    20261009,
+    20261010,
+    20261011,
+    20261012
+  ],
+  "n_models": 4,
   "architecture": {
     "layers": 2,
     "heads": 3,
@@ -8,7 +15,13 @@
     "parameters": 39264
   },
   "training_pairs": 100,
-  "training_accuracy": 1.0,
+  "training_accuracy_by_seed": {
+    "20261009": 1.0,
+    "20261010": 1.0,
+    "20261011": 1.0,
+    "20261012": 1.0
+  },
   "intervention": "replace post-block residual state from clean into left-addend-corrupted prompt",
+  "uncertainty_unit": "independent random initialization seed",
   "claim_boundary": "This is a surrogate-only causal result and says nothing about OpenAI model internals."
 }
