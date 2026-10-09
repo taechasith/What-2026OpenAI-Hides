@@ -1,72 +1,96 @@
 # OpenAI Mathematics Corpus Artifact Audit
 
-> **Reverse-Engineering Mathematical Reasoning from OpenAI's 2026 Mathematics Corpus: Implications for Mechanistic Interpretability**<br>
-> Taechasith Kangkhuntod · School of Engineering, University of the Thai Chamber of Commerce, Thailand
+<p align="center">
+  <strong>Reverse-Engineering Mathematical Reasoning from OpenAI's 2026 Mathematics Corpus: Implications for Mechanistic Interpretability</strong><br>
+  Taechasith Kangkhuntod<br>
+  School of Engineering, University of the Thai Chamber of Commerce, Thailand
+</p>
 
-[Paper](paper/main.pdf) · [arXiv source archive](release/arxiv_submission.zip) · [Final audit](reports/FINAL_AUDIT.md) · [Simulation protocol](SIMULATION_PROTOCOL.md) · [Project home](https://github.com/taechasith/What-2026OpenAI-Hides)
+<p align="center">
+  <a href="paper/main.pdf">Read the paper</a> |
+  <a href="release/arxiv_submission.zip">Download arXiv source</a> |
+  <a href="reports/FINAL_AUDIT.md">Review final audit</a> |
+  <a href="SIMULATION_PROTOCOL.md">Read simulation protocol</a> |
+  <a href="https://github.com/taechasith/What-2026OpenAI-Hides">Project home</a>
+</p>
 
-## What this repository establishes
+> **Research-release status.** Reproducible public-artifact audit, frozen
+> corpus provenance, four-seed causal surrogate simulation, verified
+> nine-page manuscript, and independently compiled arXiv source archive.
 
-This is a reproducible audit of the public, Apache-2.0-licensed
+## Executive summary
+
+This repository studies the public, Apache-2.0-licensed
 [openai/math](https://github.com/openai/math) release at immutable commit
-<code>fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb</code>. It measures catalogue
-structure, linked-artifact availability, Lean scope-document availability, and
-the ten explicitly released abridged reasoning summaries.
+<code>fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb</code>. It inventories
+catalogue-linked mathematics artifacts, Lean scope documents, and the ten
+explicitly released abridged reasoning summaries.
 
-It also contains a separate, genuinely executed four-seed causal
-residual-stream-patching simulation in fully inspectable toy Transformers.
-That simulation demonstrates a mechanistic-interpretability method; it is not
-evidence about OpenAI model weights, activations, hidden reasoning, or neural
-circuits.
+The public release does **not** contain model weights, activations, prompts,
+or complete hidden reasoning. Accordingly, this repository makes no claim to
+have reverse-engineered an OpenAI model. Its causal experiment is a separate,
+executed four-seed residual-stream-patching simulation in fully inspectable
+toy Transformers. It demonstrates a method, not an OpenAI-internal mechanism.
 
-## At a glance
+<p align="center">
+  <img src="figures/causal_analysis_workflow.png" width="100%" alt="Conceptual workflow from public artifacts to toy-model causal interventions">
+</p>
 
-| Public-release audit | Inspectable surrogate simulation |
+<p align="center"><em>Figure 1. Evidence boundary and causal-analysis workflow.</em></p>
+
+## Study at a glance
+
+| Public-artifact audit | Inspectable surrogate simulation |
 | --- | --- |
-| 372 result families | 4 independently initialized models |
-| 719 catalogue-linked manuscripts | 2 layers · 3 heads · 39,264 parameters |
+| 372 result families | 4 independent initialization seeds |
+| 719 catalogue-linked manuscripts | 2 layers, 3 heads, 39,264 parameters |
 | 242 Lean scope documents | 100 modulo-10 addition prompts per model |
-| 10 released abridged summaries | 100% in-table fit for every seed |
-| Family-size comparison: Mann--Whitney <i>p</i> = 0.638 | Layer-1 left-addend recovery: 0.36, 95% t CI [0.20, 0.52] |
+| 10 released abridged summaries | Exact in-table fit for every seed |
+| Mann-Whitney <i>p</i> = 0.638 | Left-addend recovery = 0.36, 95% t CI [0.20, 0.52] |
 
-## Evidence boundary
+## What the evidence supports
 
-The public corpus contains outputs and supporting artifacts, not an
-inspectable OpenAI model. The study therefore makes claims only about public
-artifact availability, catalogue structure, and descriptive text measures.
-It does not claim to recover OpenAI's neural mechanisms, validate every
-manuscript's mathematics, or infer hidden reasoning from released prose.
-
-The causal simulation is deliberately isolated from the corpus analysis:
-
-1. Train each toy Transformer from scratch on the fixed full addition table.
-2. Corrupt the left addend in every prompt.
-3. Replace one post-block residual state with its clean counterpart.
-4. Measure clean-answer-logit recovery, treating random initialization seed as
-   the uncertainty unit.
-
-The frozen design, controls, stopping rule, and interpretation limits are in
-[SIMULATION_PROTOCOL.md](SIMULATION_PROTOCOL.md).
-
-## Key outputs
-
-| Deliverable | Description |
+| Claim | Status |
 | --- | --- |
-| [paper/main.pdf](paper/main.pdf) | Nine-page, arXiv-ready manuscript with 28 cited sources. |
-| [release/arxiv_submission.zip](release/arxiv_submission.zip) | Clean ten-file source package; independently compiled after extraction. |
-| [reports/FINAL_AUDIT.md](reports/FINAL_AUDIT.md) | Build, archive, visual-QA, and scientific-boundary record. |
-| [data/derived/surrogate_patching_summary.csv](data/derived/surrogate_patching_summary.csv) | Four-seed mean, sample SD, and t-interval estimates. |
-| [data/derived/surrogate_primary_contrast.json](data/derived/surrogate_primary_contrast.json) | Prespecified paired Layer-1 left-addend versus operator contrast. |
+| Public artifact availability and catalogue structure | Supported by the pinned Git-tree audit. |
+| Lean-document availability | Supported; not a claim of Lean compilation or mathematical correctness. |
+| Properties of the released reasoning-summary text | Descriptive only; the summaries are selected and abridged. |
+| Causal residual-state effects in the toy models | Supported by the released four-seed simulation records. |
+| Neural mechanisms of OpenAI's unreleased model | Not supported and explicitly out of scope. |
+
+The prespecified corpus estimands are documented in
+[RESEARCH_PROTOCOL.md](RESEARCH_PROTOCOL.md) and
+[PREREGISTRATION.md](PREREGISTRATION.md). The surrogate architecture,
+interventions, controls, seeds, stopping rule, and uncertainty convention were
+fixed in [SIMULATION_PROTOCOL.md](SIMULATION_PROTOCOL.md) before its execution.
+
+## Results and release artifacts
+
+| Artifact | Purpose |
+| --- | --- |
+| [paper/main.pdf](paper/main.pdf) | Publication-ready, nine-page manuscript with 28 cited sources. |
+| [release/arxiv_submission.zip](release/arxiv_submission.zip) | Verified 11-file arXiv source bundle, including the overview figure and simulation protocol. |
+| [reports/FINAL_AUDIT.md](reports/FINAL_AUDIT.md) | Evidence for builds, visual checks, archive validation, and claim boundaries. |
+| [data/derived/corpus_manifest.json](data/derived/corpus_manifest.json) | Pinned corpus commit, source hashes, and Git-object validation record. |
+| [data/derived/surrogate_patching_seed.csv](data/derived/surrogate_patching_seed.csv) | All site-by-seed causal-recovery estimates. |
+| [data/derived/surrogate_patching_summary.csv](data/derived/surrogate_patching_summary.csv) | Means, sample standard deviations, and Student-t intervals across seeds. |
+| [data/derived/surrogate_primary_contrast.json](data/derived/surrogate_primary_contrast.json) | Prespecified Layer-1 left-addend versus operator comparison. |
 
 <p align="center">
   <img src="figures/surrogate_patching.png" width="880" alt="Four-seed causal residual-stream patching results">
 </p>
 
-<p align="center"><em>Inspectable surrogate: mean residual-patching recovery and seed-level 95% Student-t intervals.</em></p>
+<p align="center"><em>Figure 2. Mean causal recovery and seed-level 95% Student-t intervals in the inspectable surrogate.</em></p>
 
 ## Reproduce
 
-Requirements: Python 3.10+, Git, and Tectonic for the PDF build.
+### Requirements
+
+- Python 3.10+
+- Git
+- Tectonic, for the manuscript build
+
+### End-to-end workflow
 
 ~~~powershell
 python -m pip install -e .
@@ -80,26 +104,27 @@ tools\tectonic\tectonic.exe -X compile paper/main.tex --outdir paper --keep-logs
 python scripts\build_release.py
 ~~~
 
-On Windows, ordinary working-tree traversal can miss deeply nested upstream
-paths when MAX_PATH blocks checkout. The analysis reads verified Git blobs
-directly from the immutable object database so such paths are not silently
-excluded.
+On Windows, deeply nested upstream paths may exceed ordinary checkout limits.
+The analysis reads verified immutable Git blobs directly, so those artifacts
+are not silently omitted when working-tree materialization fails.
 
-## Repository map
+## Repository structure
 
 | Path | Contents |
 | --- | --- |
-| <code>src/</code> | Deterministic corpus parser, statistics, figure generation, and multi-seed simulation. |
-| <code>data/derived/</code> | Provenance manifest, generated measurements, seed-level results, and summaries. |
-| <code>figures/</code> | Publication figures generated from the released derived data. |
-| <code>paper/</code> | LaTeX manuscript, bibliography, generated macros, and compiled PDF. |
-| <code>release/</code> | Verified arXiv source archive. |
+| <code>src/</code> | Corpus parser, statistics, figure generation, and multi-seed causal simulation. |
+| <code>tests/</code> | Unit tests, including seed-level uncertainty validation. |
+| <code>data/derived/</code> | Provenance manifest, public-artifact measurements, and simulation outputs. |
+| <code>figures/</code> | Paper figures, including the supplied conceptual overview. |
+| <code>paper/</code> | LaTeX source, bibliography, generated macros, and compiled manuscript. |
+| <code>release/</code> | ArXiv-ready source archive. |
 | <code>reports/</code> | Final audit and reproducibility evidence. |
-| <code>external/</code> | Ignored third-party corpus clone; never redistributed in this repository. |
+| <code>external/</code> | Ignored third-party corpus clone; never redistributed. |
 
-## License and citation
+## Citation and license
 
-Repository-authored code and documentation are Apache-2.0 licensed. The
-upstream corpus is not redistributed; its separate license and provenance are
-recorded in <code>data/derived/corpus_manifest.json</code>. Please cite the
-accompanying manuscript using [CITATION.cff](CITATION.cff).
+Please cite the accompanying manuscript using [CITATION.cff](CITATION.cff).
+Repository-authored code and documentation are licensed under
+[Apache-2.0](LICENSE). The upstream corpus is not redistributed; its separate
+license and provenance are preserved in
+<code>data/derived/corpus_manifest.json</code>.
