@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the accompanying manuscript."
+title: "Reverse-Engineering Mathematical Reasoning from OpenAI's 2026 Mathematics Corpus: Implications for Mechanistic Interpretability"
+authors:
+  - family-names: Kangkhuntod
+    given-names: Taechasith
+    affiliation: "School of Engineering, University of the Thai Chamber of Commerce, Thailand"
+date-released: 2026-10-09
+license: Apache-2.0
+type: software

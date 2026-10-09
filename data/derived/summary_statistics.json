@@ -1,0 +1,25 @@
+{
+  "seed": 20261009,
+  "families": 372,
+  "manuscripts": 719,
+  "lean_document_families": 242,
+  "lean_document_proportion": 0.6505376344086021,
+  "linked_pdfs_present": 719,
+  "source_available_manuscripts": 719,
+  "comparison": {
+    "outcome": "catalogue-linked manuscript count per family",
+    "group_1": "Lean document present",
+    "group_0": "Lean document absent",
+    "group_1_n": 242,
+    "group_0_n": 130,
+    "group_1_median": 1.0,
+    "group_0_median": 1.0,
+    "mean_difference": 0.085886840432295,
+    "mann_whitney_u": 16150.0,
+    "mann_whitney_asymptotic_p": 0.6383210794649763,
+    "rank_biserial": 0.026700572155117674,
+    "permutation_draws": 10000,
+    "permutation_two_sided_p": 0.6653334666533347,
+    "interpretation": "Associational artifact comparison; families are not independent model runs."
+  }
+}

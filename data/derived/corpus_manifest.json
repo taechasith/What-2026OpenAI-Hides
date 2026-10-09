@@ -1,0 +1,16 @@
+{
+  "upstream_repository": "https://github.com/openai/math",
+  "commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+  "tree_blob_count": 133955,
+  "git_object_integrity": "git fsck --no-dangling --no-progress passed",
+  "working_tree_note": "Analysis reads Git blobs directly. Windows MAX_PATH can prevent materializing some deeply nested upstream paths in a working tree.",
+  "key_file_sha256": {
+    "README.md": "5e8878ee04866f52ec942852552b9c28db278f65691c7ab49a87c9e93a9199fd",
+    "CONTENTS.md": "cc7c0b8a1cdedd845a777e77cf682657308503daf8346c1349e06e9259d063c2",
+    "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  "license_observed": "Apache-2.0 (upstream LICENSE file)",
+  "parsed_families": 372,
+  "parsed_manuscripts": 719,
+  "parsed_released_traces": 10
+}

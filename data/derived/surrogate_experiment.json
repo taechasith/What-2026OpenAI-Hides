@@ -1,0 +1,14 @@
+{
+  "experiment": "tiny transformer trained from scratch on addition modulo 10",
+  "seed": 20261009,
+  "architecture": {
+    "layers": 2,
+    "heads": 3,
+    "width": 48,
+    "parameters": 39264
+  },
+  "training_pairs": 100,
+  "training_accuracy": 1.0,
+  "intervention": "replace post-block residual state from clean into left-addend-corrupted prompt",
+  "claim_boundary": "This is a surrogate-only causal result and says nothing about OpenAI model internals."
+}

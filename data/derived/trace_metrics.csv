@@ -1,0 +1,11 @@
+family_id,trace_path,pdf_exists,pages,extracted_words,attempt_mentions,verify_mentions,lemma_mentions,proof_mentions,error_fail_mentions
+007,reasoning_traces/ordinary-two-point-correlations.pdf,True,7,2704,5,0,0,2,2
+017,reasoning_traces/irrationality-exponent-of-pi.pdf,True,42,14857,6,0,5,5,56
+087,reasoning_traces/symmetric-and-general-mahler-conjectures.pdf,True,45,19935,12,0,0,12,40
+102,reasoning_traces/basic-semidefinite-threshold-np-hardness.pdf,True,16,7744,6,1,2,5,19
+159,reasoning_traces/quasipolynomial-arithmetic-progressions.pdf,True,41,18921,9,0,19,15,29
+197,reasoning_traces/kaplansky-direct-finiteness-characteristic-two.pdf,True,23,10682,24,2,11,11,16
+221,reasoning_traces/mezard-parisi-formula.pdf,True,5,2020,1,0,0,1,5
+271,reasoning_traces/spontaneous-magnetization-quantum-heisenberg-ferromagnet.pdf,True,6,2388,1,0,0,2,2
+287,reasoning_traces/free-group-factor-isomorphism.pdf,True,11,4680,1,0,0,0,2
+362,reasoning_traces/relativistic-vlasov-maxwell.pdf,True,6,2089,2,0,0,0,1
