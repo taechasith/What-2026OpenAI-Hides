@@ -68,7 +68,7 @@ fixed in [SIMULATION_PROTOCOL.md](SIMULATION_PROTOCOL.md) before its execution.
 
 | Artifact | Purpose |
 | --- | --- |
-| [paper/main.pdf](paper/main.pdf) | Publication-ready, nine-page manuscript with 28 cited sources. |
+| [paper/main.pdf](paper/main.pdf) | Publication-ready, nine-page manuscript with 31 cited sources. |
 | [release/arxiv_submission.zip](release/arxiv_submission.zip) | Verified 11-file arXiv source bundle, including the overview figure and simulation protocol. |
 | [reports/FINAL_AUDIT.md](reports/FINAL_AUDIT.md) | Evidence for builds, visual checks, archive validation, and claim boundaries. |
 | [data/derived/corpus_manifest.json](data/derived/corpus_manifest.json) | Pinned corpus commit, source hashes, and Git-object validation record. |
