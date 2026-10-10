@@ -1,0 +1,226 @@
+{
+  "inventory_protocol": "FULL_TREE_INVENTORY_PROTOCOL.md",
+  "inventory_classifier": "path-extension-roles-v1",
+  "tree_blobs_indexed": 133955,
+  "total_bytes": 2214297422,
+  "unique_blob_object_ids": 133582,
+  "empty_blobs": 1,
+  "longest_path_characters": 271,
+  "named_released_summaries": 10,
+  "by_top_level": [
+    {
+      "top_level": "(root)",
+      "files": 6,
+      "bytes": 1302710
+    },
+    {
+      "top_level": "lean",
+      "files": 123565,
+      "bytes": 1584025482
+    },
+    {
+      "top_level": "preprints",
+      "files": 10373,
+      "bytes": 627365628
+    },
+    {
+      "top_level": "reasoning_traces",
+      "files": 11,
+      "bytes": 1603602
+    }
+  ],
+  "by_artifact_role": [
+    {
+      "artifact_role": "lean_scope_document",
+      "files": 242,
+      "bytes": 359419
+    },
+    {
+      "artifact_role": "lean_source",
+      "files": 122876,
+      "bytes": 1575788914
+    },
+    {
+      "artifact_role": "lean_structured_metadata",
+      "files": 417,
+      "bytes": 164850
+    },
+    {
+      "artifact_role": "lean_support_file",
+      "files": 30,
+      "bytes": 7712299
+    },
+    {
+      "artifact_role": "preprint_bibliography",
+      "files": 521,
+      "bytes": 5385102
+    },
+    {
+      "artifact_role": "preprint_pdf",
+      "files": 776,
+      "bytes": 454654135
+    },
+    {
+      "artifact_role": "preprint_support_file",
+      "files": 1069,
+      "bytes": 32218167
+    },
+    {
+      "artifact_role": "preprint_tex_source",
+      "files": 8007,
+      "bytes": 135108224
+    },
+    {
+      "artifact_role": "reasoning_trace_support_file",
+      "files": 1,
+      "bytes": 18641
+    },
+    {
+      "artifact_role": "released_reasoning_summary_pdf",
+      "files": 10,
+      "bytes": 1584961
+    },
+    {
+      "artifact_role": "root_release_file",
+      "files": 2,
+      "bytes": 646155
+    },
+    {
+      "artifact_role": "root_release_metadata",
+      "files": 4,
+      "bytes": 656555
+    }
+  ],
+  "by_extension": [
+    {
+      "extension": "(none)",
+      "files": 19,
+      "bytes": 19998728
+    },
+    {
+      "extension": ".bib",
+      "files": 521,
+      "bytes": 5385102
+    },
+    {
+      "extension": ".cpp",
+      "files": 14,
+      "bytes": 72714
+    },
+    {
+      "extension": ".first-frozen",
+      "files": 2,
+      "bytes": 22623
+    },
+    {
+      "extension": ".hpp",
+      "files": 3,
+      "bytes": 41995
+    },
+    {
+      "extension": ".json",
+      "files": 490,
+      "bytes": 5876506
+    },
+    {
+      "extension": ".jsonl",
+      "files": 2,
+      "bytes": 4295583
+    },
+    {
+      "extension": ".lean",
+      "files": 122876,
+      "bytes": 1575788914
+    },
+    {
+      "extension": ".log",
+      "files": 11,
+      "bytes": 13470
+    },
+    {
+      "extension": ".md",
+      "files": 1032,
+      "bytes": 1584454
+    },
+    {
+      "extension": ".mmd",
+      "files": 1,
+      "bytes": 1272
+    },
+    {
+      "extension": ".patch",
+      "files": 23,
+      "bytes": 7619294
+    },
+    {
+      "extension": ".pdf",
+      "files": 787,
+      "bytes": 456563323
+    },
+    {
+      "extension": ".png",
+      "files": 3,
+      "bytes": 262664
+    },
+    {
+      "extension": ".py",
+      "files": 125,
+      "bytes": 947096
+    },
+    {
+      "extension": ".stderr",
+      "files": 2,
+      "bytes": 94
+    },
+    {
+      "extension": ".stdout",
+      "files": 2,
+      "bytes": 1691
+    },
+    {
+      "extension": ".tex",
+      "files": 8009,
+      "bytes": 135448793
+    },
+    {
+      "extension": ".tsv",
+      "files": 4,
+      "bytes": 15745
+    },
+    {
+      "extension": ".txt",
+      "files": 28,
+      "bytes": 277879
+    },
+    {
+      "extension": ".yaml",
+      "files": 1,
+      "bytes": 79482
+    }
+  ],
+  "by_catalogue_relation": [
+    {
+      "catalogue_relation": "catalogue_linked_pdf",
+      "files": 719,
+      "bytes": 433085778
+    },
+    {
+      "catalogue_relation": "catalogue_linked_preprint_directory",
+      "files": 9271,
+      "bytes": 165687517
+    },
+    {
+      "catalogue_relation": "not_catalogue_linked",
+      "files": 123965,
+      "bytes": 1615524127
+    }
+  ],
+  "validation": {
+    "path_unique": true,
+    "all_blob_ids_are_40_hex_characters": true,
+    "all_bytes_nonnegative": true,
+    "coverage_fraction": 1.0
+  },
+  "source_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+  "source_tree": "08e6aaa9e4788dd81984b67a9cd97d952093ecd4"
+}

@@ -37,6 +37,15 @@ original corpus preregistration, but confirmatory within its separately
 registered surrogate protocol. It does not alter RQ1--RQ3 or turn public
 OpenAI outputs into evidence about model internals.
 
+## Exploratory full-tree inventory extension
+
+On 2026-10-10, before executing it, we registered a source-wide structural
+inventory in `FULL_TREE_INVENTORY_PROTOCOL.md`. It enumerates every versioned
+blob at the already frozen `openai/math` commit and is explicitly exploratory
+relative to RQ1--RQ3. Its file-level measurements are descriptive coverage
+metadata, not semantic review, theorem verification, Lean compilation, or a
+claim about all public OpenAI research outside this named mathematics release.
+
 ## Stopping rule
 
 Run once against the pinned release. Re-runs must reproduce the same manifest

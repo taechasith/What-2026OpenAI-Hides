@@ -11,7 +11,7 @@
 \usepackage{hyperref}
 \usepackage[numbers,sort&compress]{natbib}
 \hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue,
-  pdftitle={Reverse-Engineering Mathematical Reasoning from OpenAI’s 2026 Mathematics Corpus: Implications for Mechanistic Interpretability}}
+  pdftitle={Reverse-Engineering Mathematical Reasoning from OpenAI's 2026 Mathematics Corpus: Implications for Mechanistic Interpretability}}
 \pdfstringdefDisableCommands{\def\textquoteright{'}}
 \Urlmuskip=0mu plus 1mu\relax
 \graphicspath{{figures/}{../figures/}}
@@ -49,7 +49,11 @@ Git tree. We identify \LeanFamilies{} families with a Lean scope document and
 \TraceCount{} released abridged summaries. Catalogue-linked manuscript count
 does not meaningfully differ by scope-document availability (Mann--Whitney
 $p=\MannWhitneyP$; permutation $p=\PermutationP$; rank-biserial
-$r=\RankBiserial$). These observations do not reverse-engineer neural
+$r=\RankBiserial$). In a separately specified exploratory extension, we
+structurally index every versioned Git blob (\TreeBlobs{} blobs; \TreeGiB{} GiB)
+by path, object identifier, size, and artifact role. This establishes complete
+release-tree coverage, not semantic review or mathematical correctness. These
+observations do not reverse-engineer neural
 mechanisms. To make that boundary operational, we separately conduct a causal
 residual-stream patching simulation in \SurrogateSeedCount{} fully
 inspectable toy Transformers. That surrogate result demonstrates an
@@ -168,6 +172,21 @@ a two-sided seed-20261009 label-permutation calculation using 10,000 draws.
 The latter is a reference calculation, not a claim of independent random
 families.
 
+\subsection{Exhaustive release-tree extension}
+
+The catalogue measures do not by themselves cover every versioned artifact.
+We therefore registered a separate exploratory protocol before executing a
+structural census of every Git blob at the same immutable commit
+(\texttt{FULL\_TREE\_INVENTORY\_PROTOCOL.md}). The implementation resolves
+the pinned commit once, reads immutable Git objects rather than the working
+tree, and records each blob's path, object identifier, byte size, top-level
+directory, extension, deterministic path/extension-based artifact role, and
+catalogue or released-summary relation. This is exhaustive at the release-tree
+level: it includes uncatalogued preprint bundles, sources, configuration, and
+release metadata rather than treating the catalogue as the denominator. It is
+not a semantic reading of every file, a proof check, Lean compilation, or an
+expansion to all research artifacts OpenAI may publish elsewhere.
+
 \section{Results}
 
 \subsection{Release inventory}
@@ -183,6 +202,34 @@ manuscript directory with TeX sources was present in the pinned Git tree
 scope document (\LeanShare{}). OpenAI separately reports approximately 42\%
 of top-line results as formalized \citep{openai2026math}; this uses a different
 unit and is not interchangeable with our scope-document measure.
+
+\subsection{Exhaustive release-tree census}
+
+The same release tree contains \TreeBlobs{} versioned blobs totaling
+\TreeGiB{} GiB. The structural census includes \LeanSourceFiles{} Lean source
+files, \PreprintTexFiles{} preprint TeX sources, and \PreprintPdfFiles{}
+preprint PDFs (Table~\ref{tab:full-tree}; Figure~\ref{fig:full-tree}). These
+are file counts and path-based roles, not claims that the Lean files compiled,
+the manuscripts are correct, or each source file was semantically interpreted.
+
+\begin{table}[H]
+\centering
+\input{generated/full_tree_table.tex}
+\caption{Exhaustive structural inventory of every versioned blob in the pinned
+release. Categories are deterministic path/extension roles and their units
+are files, not mathematical results.}
+\label{tab:full-tree}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.94\linewidth]{full_tree_composition.pdf}
+\caption{Complete path/extension-based inventory of the pinned release tree.
+The log scale makes the small root and reasoning-summary groups visible beside
+the large Lean and preprint collections. This is a structural census of all
+versioned blobs, not a quality or correctness assessment.}
+\label{fig:full-tree}
+\end{figure}
 
 \begin{figure}[H]
 \centering
@@ -287,12 +334,13 @@ OpenAI's model.
 \section{Limitations and research agenda}
 
 This audit concerns one release commit; catalogue labels are upstream metadata,
-not independent adjudication. We did not compile the substantial upstream Lean
-project or assess mathematical validity. PDF extraction is imperfect, although
-failures are recorded. The toy Transformer was trained on its evaluation table,
-so its result is methodological rather than evidence of abstract reasoning.
-Most importantly, public output artifacts cannot identify mechanisms inside an
-unreleased model.
+not independent adjudication. The exhaustive tree census covers every
+versioned blob structurally, but it does not read every file semantically. We
+did not compile the substantial upstream Lean project or assess mathematical
+validity. PDF extraction is imperfect, although failures are recorded. The toy
+Transformer was trained on its evaluation table, so its result is methodological
+rather than evidence of abstract reasoning. Most importantly, public output
+artifacts cannot identify mechanisms inside an unreleased model.
 
 A credible next study should choose an open-weight mathematical model, freeze
 prompts and scoring, collect clean and controlled-corruption runs, and test
@@ -321,8 +369,9 @@ The pinned 2026 mathematics release is not a window into an unreleased model's
 circuitry. It is, however, a durable public specification of a demanding
 mathematical-output domain: \TotalFamilies{} result families,
 \TotalManuscripts{} linked manuscripts, Lean scope materials, and
-\TraceCount{} released summaries. This study releases a pinned, auditable map
-of that domain together with a deliberately separate causal-intervention
+\TraceCount{} released summaries, now situated within an exhaustive
+\TreeBlobs{}-blob release-tree census. This study releases a pinned, auditable
+map of that domain together with a deliberately separate causal-intervention
 template.
 
 That division makes the work actionable. Future studies can preregister
@@ -347,9 +396,10 @@ research program possible.
 Derived outputs are regenerated by
 \texttt{python -m oai\_math\_study.run\_analysis} and
 \texttt{python -m oai\_math\_study.surrogate}. The source archive excludes
-third-party corpus files. This study makes no claim about proprietary model
-internals, intent, or hidden reasoning. The complete research repository is
-available at \url{https://github.com/taechasith/What-2026OpenAI-Hides}.
+third-party corpus files. The full-tree census is specified in
+\texttt{FULL\_TREE\_INVENTORY\_PROTOCOL.md}. This study makes no claim about
+proprietary model internals, intent, or hidden reasoning. The complete research
+repository is available at \url{https://github.com/taechasith/What-2026OpenAI-Hides}.
 
 \bibliographystyle{plainnat}
 \bibliography{references}
