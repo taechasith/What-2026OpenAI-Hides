@@ -1,6 +1,6 @@
 # Exhaustive source-tree inventory protocol
 
-**Registered in repository:** 2026-10-10 (Asia/Bangkok)  
+**Registered in repository:** 2026-10-10 (Asia/Bangkok)
 **Status:** Exploratory extension to the frozen corpus audit; executed only
 against the same pinned `openai/math` commit.
 
