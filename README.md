@@ -15,8 +15,9 @@
 </p>
 
 > **Research-release status.** Reproducible public-artifact audit, frozen
-> corpus provenance, four-seed causal surrogate simulation, verified
-> nine-page manuscript, and independently compiled arXiv source archive.
+> corpus provenance, four-seed causal surrogate simulation, and a Version 2
+> exploratory proof-source extraction checkpoint. The Version 2 central
+> open-weight causal-prediction hypothesis has not yet been evaluated.
 
 ## Executive summary
 
@@ -32,6 +33,20 @@ or complete hidden reasoning. Accordingly, this repository makes no claim to
 have reverse-engineered an OpenAI model. Its causal experiment is a separate,
 executed four-seed residual-stream-patching simulation in fully inspectable
 toy Transformers. It demonstrates a method, not an OpenAI-internal mechanism.
+
+## Version 2 checkpoint
+
+On the `research/v2-proof-to-circuit` continuation branch, the project adds a
+frozen proof-to-circuit protocol and a deterministic, immutable-blob extraction
+of TeX proof-environment candidates, literal within-document source references,
+and explicitly rule-based lexical motif candidates. The extractor produced
+45,620 source-environment candidates, 97,343 deduplicated literal references,
+and 42,143 motif records from 8,007 TeX sources. These are not verified proof
+dependencies or human semantic annotations.
+
+No validated counterfactual benchmark, open-weight behavioral evaluation, or
+Version 2 activation-patching experiment has run. The honest status is
+**partial empirical completion**; see [FINAL_READINESS.md](reports/FINAL_READINESS.md).
 
 <p align="center">
   <img src="figures/causal_analysis_workflow.png" width="100%" alt="Conceptual workflow from public artifacts to toy-model causal interventions">
@@ -109,6 +124,7 @@ git -C external/openai-math-full checkout --detach fd4aeeb2ee4fc729c18d98444fed4
 
 python -m oai_math_study.run_analysis --corpus external/openai-math-full --root .
 python -m oai_math_study.surrogate --root .
+python -m oai_math_study.v2_proof_extraction --corpus external/openai-math-full --root .
 python -m pytest -q
 
 tools\tectonic\tectonic.exe -X compile paper/main.tex --outdir paper --keep-logs --keep-intermediates

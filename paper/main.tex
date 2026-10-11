@@ -17,6 +17,7 @@
 \graphicspath{{figures/}{../figures/}}
 \input{generated/results_macros.tex}
 \input{generated/surrogate_macros.tex}
+\input{generated/v2_proof_macros.tex}
 
 \title{Reverse-Engineering Mathematical Reasoning from OpenAI\textquoteright{}s 2026 Mathematics Corpus: Implications for Mechanistic Interpretability}
 \author{Taechasith Kangkhuntod\\
@@ -51,9 +52,12 @@ does not meaningfully differ by scope-document availability (Mann--Whitney
 $p=\MannWhitneyP$; permutation $p=\PermutationP$; rank-biserial
 $r=\RankBiserial$). In a separately specified exploratory extension, we
 structurally index every versioned Git blob (\TreeBlobs{} blobs; \TreeGiB{} GiB)
-by path, object identifier, size, and artifact role. This establishes complete
-release-tree coverage, not semantic review or mathematical correctness. These
-observations do not reverse-engineer neural
+by path, object identifier, size, and artifact role. In a Version~2
+exploratory continuation, we further extract \VTwoProofNodes{} literal TeX
+environments and \VTwoExplicitEdges{} within-document source references from
+\VTwoTexFiles{} source files, while separately retaining \VTwoMotifRecords{}
+rule-based motif candidates. These structures are not proof verification or
+semantic annotation. These observations do not reverse-engineer neural
 mechanisms. To make that boundary operational, we separately conduct a causal
 residual-stream patching simulation in \SurrogateSeedCount{} fully
 inspectable toy Transformers. That surrogate result demonstrates an
@@ -106,6 +110,14 @@ scrubbing each test particular counterfactual claims
 They also expose failure modes: an ablated computation can be compensated by
 others, and a single intervention can overstate a component's explanatory
 role \citep{mcgrath2023hydra,finlayson2021causal,bau2019neurons}.
+
+Recent benchmarks sharpen the evaluation standard. KisMATH aligns extracted
+reasoning graphs with interventions on mathematical tasks, while MIB compares
+mechanistic localization methods against shared causal targets
+\citep{saha2026kismath,mueller2025mib}. These works rule out a priority claim
+for graph-informed mathematical interventions here. Instead, the Version~2
+continuation asks whether public research-source structure can generate
+family-held-out causal hypotheses in a separately specified inspectable model.
 
 Feature-level approaches address the fact that individual neurons can mix
 several concepts. Toy superposition models, dictionary learning, and sparse
@@ -186,6 +198,26 @@ level: it includes uncatalogued preprint bundles, sources, configuration, and
 release metadata rather than treating the catalogue as the denominator. It is
 not a semantic reading of every file, a proof check, Lean compilation, or an
 expansion to all research artifacts OpenAI may publish elsewhere.
+
+\subsection{Version 2 exploratory source-structure extraction}
+
+Before any Version~2 extraction, we froze a continuation protocol and a
+separate inactive confirmatory plan. The extractor reads immutable Git blobs
+for all preprint TeX sources. It records TeX theorem-, lemma-, proposition-,
+corollary-, definition-, remark-, and proof-environment candidates with source
+commit, blob identifier, document identifier, result-family relation, and line
+span. Graph A retains only literal within-document TeX references. Graph B
+contains fixed lexical rules for candidates such as contradiction, induction,
+construction, reduction, invariant, case splitting, limiting argument, and
+equivalence. Graph A is not an entailment graph; Graph B is not semantic or
+human annotation.
+
+This checkpoint deliberately does not create validated mathematical
+counterfactuals or execute a new model intervention. Lean kernel verification
+does not by itself certify informal semantic fidelity
+\citep{ammanamanchi2026faults}; without a detected Lean toolchain and
+independent semantic audit records, no Version~2 counterfactual is labelled
+verified.
 
 \section{Results}
 
@@ -271,6 +303,26 @@ them unsuitable for estimating properties of all model reasoning. They can
 support qualitative study of the published text but cannot recover omitted
 deliberation or establish faithfulness to unobserved activations.
 
+\subsection{Exploratory proof-structure candidates}
+
+The Version~2 extractor processed \VTwoTexFiles{} TeX files, yielding
+\VTwoProofNodes{} source-environment candidates, \VTwoExplicitEdges{}
+deduplicated literal reference edges, and \VTwoMotifRecords{} lexical motif
+records. It could not resolve \VTwoUnresolvedRefs{} labels within their source
+document; those references are excluded rather than guessed. Figure~\ref{fig:v2-motifs}
+is a frequency display of rule matches, not a prevalence estimate for proof
+strategies. Repeated document templates, prose conventions, and unequal source
+lengths may all influence these counts.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.84\linewidth]{v2_proof_motifs.pdf}
+\caption{Exploratory lexical proof-motif candidates from pinned TeX sources.
+Each bar counts a fixed regular-expression match in a candidate environment;
+it is neither a semantic annotation nor evidence of a mathematical dependency.}
+\label{fig:v2-motifs}
+\end{figure}
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=.78\linewidth]{trace_text_volume.pdf}
@@ -342,6 +394,15 @@ Transformer was trained on its evaluation table, so its result is methodological
 rather than evidence of abstract reasoning. Most importantly, public output
 artifacts cannot identify mechanisms inside an unreleased model.
 
+Version~2 remains partial. Its source-structure outputs meet the corpus
+integrity and provenance portion of G1 and provide a documented exploratory
+input for G2, but they have not been independently semantically audited.
+G3--G7 have not been entered: no valid counterfactual benchmark, behavioral
+competence result, held-out predictive comparison, causal intervention result,
+or robustness result exists. CPU-only PyTorch, no cached open-weight model,
+and no detected Lean toolchain are recorded infrastructure constraints, not
+negative scientific findings.
+
 A credible next study should choose an open-weight mathematical model, freeze
 prompts and scoring, collect clean and controlled-corruption runs, and test
 causal effects through activation patching, path patching, ablation, or feature
@@ -393,13 +454,12 @@ research program possible.
 
 \section*{Reproducibility and ethics}
 
-Derived outputs are regenerated by
-\texttt{python -m oai\_math\_study.run\_analysis} and
-\texttt{python -m oai\_math\_study.surrogate}. The source archive excludes
-third-party corpus files. The full-tree census is specified in
-\texttt{FULL\_TREE\_INVENTORY\_PROTOCOL.md}. This study makes no claim about
+Derived outputs are regenerated by the analysis, surrogate, and Version~2
+proof-extraction modules documented in the repository README. The source
+archive excludes third-party corpus files. The full-tree census is specified in
+the accompanying inventory protocol. This study makes no claim about
 proprietary model internals, intent, or hidden reasoning. The complete research
-repository is available at \url{https://github.com/taechasith/What-2026OpenAI-Hides}.
+repository is available at the project repository URL.
 
 \bibliographystyle{plainnat}
 \bibliography{references}

@@ -1,0 +1,27 @@
+{
+  "run_type": "exploratory_rule_based_proof_structure_extraction",
+  "source_commit": "fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb",
+  "source_tree": "08e6aaa9e4788dd81984b67a9cd97d952093ecd4",
+  "source_files_considered": 8007,
+  "proof_nodes": 45620,
+  "explicit_source_edges": 97343,
+  "unresolved_reference_labels": 15824,
+  "duplicate_explicit_references_collapsed": 22049,
+  "inferred_motif_records": 42143,
+  "motif_counts": {
+    "case_split": 6148,
+    "construction": 10719,
+    "contradiction": 2419,
+    "equivalence": 4528,
+    "induction": 2345,
+    "invariant": 4779,
+    "limit": 7935,
+    "reduction": 3270
+  },
+  "files_without_candidate_environment": 2283,
+  "limitations": [
+    "Literal TeX environments and references are not proof correctness or mathematical entailment.",
+    "Motifs are lexical rule matches, not semantic or human validation.",
+    "This run does not create formal counterfactual cases or execute model interventions."
+  ]
+}
