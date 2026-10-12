@@ -1,14 +1,15 @@
 # OpenAI Mathematics Corpus Artifact Audit
 
 <p align="center">
-  <strong>Reverse-Engineering Mathematical Reasoning from OpenAI's 2026 Mathematics Corpus: Implications for Mechanistic Interpretability</strong><br>
+  <strong>What Can We Learn About an AI We Cannot Access? Reverse-Engineering Evidence from OpenAI's 2026 Mathematics Corpus and the Limits of Mechanistic Interpretability</strong><br>
   Taechasith Kangkhuntod<br>
-  School of Engineering, University of the Thai Chamber of Commerce, Thailand
+  School of Engineering, University of the Thai Chamber of Commerce, Thailand<br>
+  Coeus Technology, CreativeLabTH Group
 </p>
 
 <p align="center">
   <a href="paper/main.pdf">Read the paper</a> |
-  <a href="release/arxiv_submission.zip">Download arXiv source</a> |
+  <a href="release/arxiv_submission.zip">Download source archive</a> |
   <a href="reports/FINAL_AUDIT.md">Review final audit</a> |
   <a href="SIMULATION_PROTOCOL.md">Read simulation protocol</a> |
   <a href="https://github.com/taechasith/What-2026OpenAI-Hides">Project home</a>
@@ -16,14 +17,14 @@
 
 > **Research-release status.** Reproducible public-artifact audit, frozen
 > corpus provenance, four-seed causal surrogate simulation, verified
-> nine-page manuscript, and independently compiled arXiv source archive.
+> 11-page manuscript, and independently compiled source archive.
 
 ## Executive summary
 
 This repository studies the public, Apache-2.0-licensed
 [openai/math](https://github.com/openai/math) release at immutable commit
 <code>fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb</code>. It now structurally
-indexes **every versioned release blob**—133,955 files (2.06 GiB)—as well as
+indexes **every versioned release blob** (133,955 files; 2.06 GiB), as well as
 the preregistered catalogue-linked mathematics artifacts, Lean scope
 documents, and ten explicitly released abridged reasoning summaries.
 
@@ -76,8 +77,8 @@ artifact OpenAI has published through other channels.
 
 | Artifact | Purpose |
 | --- | --- |
-| [paper/main.pdf](paper/main.pdf) | Publication-ready, nine-page manuscript with 31 cited sources. |
-| [release/arxiv_submission.zip](release/arxiv_submission.zip) | Verified 14-file arXiv source bundle, including the overview, whole-tree figure, and registered protocols. |
+| [paper/main.pdf](paper/main.pdf) | Publication-ready, 11-page manuscript with 31 cited sources. |
+| [release/arxiv_submission.zip](release/arxiv_submission.zip) | Verified 14-file source bundle, including the overview, whole-tree figure, and registered protocols. |
 | [reports/FINAL_AUDIT.md](reports/FINAL_AUDIT.md) | Evidence for builds, visual checks, archive validation, and claim boundaries. |
 | [data/derived/corpus_manifest.json](data/derived/corpus_manifest.json) | Pinned corpus commit, source hashes, and Git-object validation record. |
 | [data/derived/full_tree_summary.json](data/derived/full_tree_summary.json) | Counts, bytes, roles, extensions, and validation for all 133,955 release blobs. |
@@ -128,7 +129,7 @@ are not silently omitted when working-tree materialization fails.
 | <code>data/derived/</code> | Provenance manifest, exhaustive file metadata, public-artifact measurements, and simulation outputs. |
 | <code>figures/</code> | Paper figures, including the supplied conceptual overview. |
 | <code>paper/</code> | LaTeX source, bibliography, generated macros, and compiled manuscript. |
-| <code>release/</code> | ArXiv-ready source archive. |
+| <code>release/</code> | Source archive for author review and submission. |
 | <code>reports/</code> | Final audit and reproducibility evidence. |
 | <code>external/</code> | Ignored third-party corpus clone; never redistributed. |
 
