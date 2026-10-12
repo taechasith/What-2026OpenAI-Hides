@@ -1,0 +1,12 @@
+{
+  "seed": 20261012,
+  "test_group_fraction": 0.2,
+  "target": "fixed lexical induction label",
+  "models": [
+    "metadata",
+    "structure",
+    "degree-permuted structure"
+  ],
+  "bootstrap_draws": 1000,
+  "source_text_used": false
+}

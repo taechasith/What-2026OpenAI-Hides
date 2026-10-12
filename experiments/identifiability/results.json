@@ -1,0 +1,18 @@
+{
+  "experiment": "v3_hidden_process_model_organisms",
+  "seed": 20261013,
+  "n_artifacts": 1440,
+  "n_test": 360,
+  "overall_accuracy": 0.725,
+  "per_process_accuracy": {
+    "editorial": 0.9,
+    "equiv_a": 0.5166666666666667,
+    "equiv_b": 0.4,
+    "mixed": 0.7666666666666667,
+    "planner": 0.85,
+    "retrieval": 0.9166666666666666
+  },
+  "observational_equivalence_pair_accuracy": 0.4583333333333333,
+  "equivalence_chance_level": 0.5,
+  "interpretation": "The equivalence pair has identical observable generation laws. Its process identity is not identifiable from these artifacts; above-chance variation is sampling noise, not recovery."
+}

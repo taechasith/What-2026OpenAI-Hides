@@ -1,0 +1,11 @@
+{
+  "seed": 20261014,
+  "base_problems": 120,
+  "variants": [
+    "original",
+    "equivalent_commuted",
+    "changed_hypothesis",
+    "invalid_conclusion"
+  ],
+  "verification_tier": "exact_concrete_integer_arithmetic"
+}

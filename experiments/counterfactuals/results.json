@@ -1,0 +1,13 @@
+{
+  "experiment": "v3_exact_integer_counterfactuals",
+  "seed": 20261014,
+  "cases": 480,
+  "base_problems": 120,
+  "checker_agreement": 1.0,
+  "valid_cases": 360,
+  "invalid_cases": 120,
+  "limitations": [
+    "Concrete integer equalities are exactly checked by Python integer arithmetic, not a proof-assistant kernel.",
+    "These cases do not establish informal-to-formal semantic fidelity or support a neural causal claim."
+  ]
+}

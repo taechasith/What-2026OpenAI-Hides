@@ -1,0 +1,17 @@
+{
+  "seed": 20261013,
+  "artifacts_per_process": 240,
+  "processes": [
+    "planner",
+    "retrieval",
+    "editorial",
+    "mixed",
+    "equiv_a",
+    "equiv_b"
+  ],
+  "equivalence_pair": [
+    "equiv_a",
+    "equiv_b"
+  ],
+  "test_group_fraction": 0.25
+}

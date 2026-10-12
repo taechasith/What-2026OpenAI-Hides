@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="paper/main.pdf">Read the paper</a> |
-  <a href="release/arxiv_submission.zip">Download arXiv source</a> |
+  <a href="release/reproducibility_bundle.zip">Download reproducibility bundle</a> |
   <a href="reports/FINAL_AUDIT.md">Review final audit</a> |
   <a href="SIMULATION_PROTOCOL.md">Read simulation protocol</a> |
   <a href="https://github.com/taechasith/What-2026OpenAI-Hides">Project home</a>
@@ -44,9 +44,16 @@ and explicitly rule-based lexical motif candidates. The extractor produced
 and 42,143 motif records from 8,007 TeX sources. These are not verified proof
 dependencies or human semantic annotations.
 
-No validated counterfactual benchmark, open-weight behavioral evaluation, or
-Version 2 activation-patching experiment has run. The honest status is
-**partial empirical completion**; see [FINAL_READINESS.md](reports/FINAL_READINESS.md).
+## Version 3 bounded reconstruction tests
+
+Version 3 adds frozen, family-disjoint prediction of the lexical
+`induction` extraction label, controlled hidden-process model organisms with an
+observational-equivalence control, and finite exact-arithmetic counterfactual
+checks. Graph features achieved held-out AUROC 0.743 versus 0.714 for metadata;
+this is not a semantic proof-strategy result. The indistinguishable hidden
+producer pair scored 0.458 against a 0.500 chance reference, demonstrating an
+identifiability limit. Open-weight behavioral and causal experiments remain
+blocked, so the honest overall status remains **limited reconstruction**.
 
 <p align="center">
   <img src="figures/causal_analysis_workflow.png" width="100%" alt="Conceptual workflow from public artifacts to toy-model causal interventions">
@@ -91,8 +98,8 @@ artifact OpenAI has published through other channels.
 
 | Artifact | Purpose |
 | --- | --- |
-| [paper/main.pdf](paper/main.pdf) | Publication-ready, nine-page manuscript with 31 cited sources. |
-| [release/arxiv_submission.zip](release/arxiv_submission.zip) | Verified 14-file arXiv source bundle, including the overview, whole-tree figure, and registered protocols. |
+| [paper/main.pdf](paper/main.pdf) | Venue-neutral 14-page manuscript with generated evidence and citations. |
+| [release/reproducibility_bundle.zip](release/reproducibility_bundle.zip) | Venue-neutral manuscript and reproducibility bundle. |
 | [reports/FINAL_AUDIT.md](reports/FINAL_AUDIT.md) | Evidence for builds, visual checks, archive validation, and claim boundaries. |
 | [data/derived/corpus_manifest.json](data/derived/corpus_manifest.json) | Pinned corpus commit, source hashes, and Git-object validation record. |
 | [data/derived/full_tree_summary.json](data/derived/full_tree_summary.json) | Counts, bytes, roles, extensions, and validation for all 133,955 release blobs. |
@@ -125,6 +132,7 @@ git -C external/openai-math-full checkout --detach fd4aeeb2ee4fc729c18d98444fed4
 python -m oai_math_study.run_analysis --corpus external/openai-math-full --root .
 python -m oai_math_study.surrogate --root .
 python -m oai_math_study.v2_proof_extraction --corpus external/openai-math-full --root .
+python -m oai_math_study.v3_experiments --root .
 python -m pytest -q
 
 tools\tectonic\tectonic.exe -X compile paper/main.tex --outdir paper --keep-logs --keep-intermediates
@@ -144,7 +152,7 @@ are not silently omitted when working-tree materialization fails.
 | <code>data/derived/</code> | Provenance manifest, exhaustive file metadata, public-artifact measurements, and simulation outputs. |
 | <code>figures/</code> | Paper figures, including the supplied conceptual overview. |
 | <code>paper/</code> | LaTeX source, bibliography, generated macros, and compiled manuscript. |
-| <code>release/</code> | ArXiv-ready source archive. |
+| <code>release/</code> | Venue-neutral reproducibility bundle. |
 | <code>reports/</code> | Final audit and reproducibility evidence. |
 | <code>external/</code> | Ignored third-party corpus clone; never redistributed. |
 

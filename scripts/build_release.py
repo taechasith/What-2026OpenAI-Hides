@@ -1,4 +1,4 @@
-"""Build a minimal arXiv source archive without redistributing the corpus."""
+"""Build a venue-neutral reproducibility bundle without redistributing the corpus."""
 
 from __future__ import annotations
 
@@ -7,25 +7,30 @@ from zipfile import ZIP_DEFLATED, ZipFile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ARCHIVE = ROOT / "release" / "arxiv_submission.zip"
+ARCHIVE = ROOT / "release" / "reproducibility_bundle.zip"
 FILES = {
     ROOT / "paper" / "main.tex": "main.tex",
     ROOT / "paper" / "references.bib": "references.bib",
     ROOT / "paper" / "generated" / "results_macros.tex": "generated/results_macros.tex",
     ROOT / "paper" / "generated" / "surrogate_macros.tex": "generated/surrogate_macros.tex",
     ROOT / "paper" / "generated" / "v2_proof_macros.tex": "generated/v2_proof_macros.tex",
+    ROOT / "paper" / "generated" / "v3_macros.tex": "generated/v3_macros.tex",
     ROOT / "paper" / "generated" / "coverage_table.tex": "generated/coverage_table.tex",
     ROOT / "paper" / "generated" / "full_tree_table.tex": "generated/full_tree_table.tex",
     ROOT / "SIMULATION_PROTOCOL.md": "SIMULATION_PROTOCOL.md",
     ROOT / "FULL_TREE_INVENTORY_PROTOCOL.md": "FULL_TREE_INVENTORY_PROTOCOL.md",
     ROOT / "protocols" / "PROOF_TO_CIRCUIT_PROTOCOL_V2.md": "protocols/PROOF_TO_CIRCUIT_PROTOCOL_V2.md",
     ROOT / "protocols" / "CONFIRMATORY_ANALYSIS_PLAN_V2.md": "protocols/CONFIRMATORY_ANALYSIS_PLAN_V2.md",
+    ROOT / "protocols" / "RESEARCH_DEFINITION.md": "protocols/RESEARCH_DEFINITION.md",
+    ROOT / "protocols" / "FUNCTIONAL_RECONSTRUCTION_V3.md": "protocols/FUNCTIONAL_RECONSTRUCTION_V3.md",
     ROOT / "figures" / "artifact_coverage.pdf": "figures/artifact_coverage.pdf",
     ROOT / "figures" / "family_size_distribution.pdf": "figures/family_size_distribution.pdf",
     ROOT / "figures" / "trace_text_volume.pdf": "figures/trace_text_volume.pdf",
     ROOT / "figures" / "full_tree_composition.pdf": "figures/full_tree_composition.pdf",
     ROOT / "figures" / "surrogate_patching.pdf": "figures/surrogate_patching.pdf",
     ROOT / "figures" / "v2_proof_motifs.pdf": "figures/v2_proof_motifs.pdf",
+    ROOT / "figures" / "v3_functional_prediction.pdf": "figures/v3_functional_prediction.pdf",
+    ROOT / "figures" / "v3_identifiability.pdf": "figures/v3_identifiability.pdf",
     ROOT / "figures" / "causal_analysis_workflow.png": "figures/causal_analysis_workflow.png",
 }
 

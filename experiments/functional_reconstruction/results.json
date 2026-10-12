@@ -1,0 +1,43 @@
+{
+  "experiment": "v3_family_disjoint_induction_label_prediction",
+  "seed": 20261012,
+  "test_nodes": 8541,
+  "test_groups": 80,
+  "positive_rate": 0.05456035593021894,
+  "metrics": {
+    "metadata": {
+      "auroc": 0.7136858050199976,
+      "average_precision": 0.09427946910646313,
+      "brier": 0.22084555772293593
+    },
+    "structure": {
+      "auroc": 0.74294277096427,
+      "average_precision": 0.12353474473103498,
+      "brier": 0.21321524721436866
+    },
+    "shuffled_structure": {
+      "auroc": 0.7136730490705431,
+      "average_precision": 0.09404097006032308,
+      "brier": 0.22085098499035724
+    }
+  },
+  "auroc_contrasts": {
+    "metadata": {
+      "mean_delta_auroc": 0.028480917642300846,
+      "ci95_low": 0.010146765572848002,
+      "ci95_high": 0.044605995605342265,
+      "bootstrap_draws": 1000
+    },
+    "shuffled_structure": {
+      "mean_delta_auroc": 0.028490036159352628,
+      "ci95_low": 0.010065919137048962,
+      "ci95_high": 0.04481552246651318,
+      "bootstrap_draws": 1000
+    }
+  },
+  "limitations": [
+    "The target is a lexical extractor label, not a validated proof strategy.",
+    "Source text and document identifiers were excluded to avoid direct lexical leakage.",
+    "The test set consists of already public artifacts, not future producer outputs."
+  ]
+}

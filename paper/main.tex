@@ -18,6 +18,7 @@
 \input{generated/results_macros.tex}
 \input{generated/surrogate_macros.tex}
 \input{generated/v2_proof_macros.tex}
+\input{generated/v3_macros.tex}
 
 \title{Reverse-Engineering Mathematical Reasoning from OpenAI\textquoteright{}s 2026 Mathematics Corpus: Implications for Mechanistic Interpretability}
 \author{Taechasith Kangkhuntod\\
@@ -31,10 +32,10 @@ School of Engineering, University of the Thai Chamber of Commerce, Thailand}
 \centering
 \includegraphics[width=\linewidth]{causal_analysis_workflow.png}
 \caption{Overall conceptual workflow. The public OpenAI mathematics release
-supports an artifact audit but does not expose model internals. We therefore
-conduct causal residual-stream interventions only in separately trained,
-inspectable toy Transformers, then summarize recovery across four independent
-initialization seeds.}
+supports artifact reconstruction and bounded held-out prediction, but does not
+expose model internals. Controlled hidden-process model organisms calibrate
+what output-only reconstruction can identify. Causal interventions, if an
+eligible inspectable model is available, remain a separate evidence stream.}
 \label{fig:overview}
 \end{figure}
 
@@ -57,13 +58,16 @@ exploratory continuation, we further extract \VTwoProofNodes{} literal TeX
 environments and \VTwoExplicitEdges{} within-document source references from
 \VTwoTexFiles{} source files, while separately retaining \VTwoMotifRecords{}
 rule-based motif candidates. These structures are not proof verification or
-semantic annotation. These observations do not reverse-engineer neural
-mechanisms. To make that boundary operational, we separately conduct a causal
-residual-stream patching simulation in \SurrogateSeedCount{} fully
-inspectable toy Transformers. That surrogate result demonstrates an
-intervention method with seed-level uncertainty, not a property of an OpenAI
-model. We release code, provenance hashes, derived data, figures, and an
-arXiv-ready source package.
+semantic annotation. A frozen, family-disjoint prediction experiment finds
+that literal-reference graph features predict the lexical \emph{induction}
+label with AUROC \VThreeFunctionalAUROC{}, versus
+\VThreeMetadataAUROC{} for matched metadata; this is an association with an
+extraction label, not a recovered mathematical strategy. Controlled model
+organisms further show that distinct hidden producers with identical observable
+laws cannot be identified (\VThreeEquivalenceAccuracy{} accuracy against 0.50
+chance). We release code, provenance hashes, derived data, figures, and a
+venue-neutral reproducibility bundle. No result identifies OpenAI's hidden
+reasoning or neural mechanisms.
 \end{abstract}
 
 \section{Introduction}
@@ -131,6 +135,26 @@ Our simulation adopts the causal-intervention side of this program while
 making no claim to have recovered an arithmetic circuit.
 
 \section{Evidence boundary}
+
+\section{Identifiability and evidential boundaries}
+
+Our framework separates artifact reconstruction (Level A), validated strategy
+reconstruction (Level B), held-out functional prediction (Level C), causal
+validation in an inspectable model (Level D), and target-producer mechanism
+identification (Level E). Only Level A is fully available from this release.
+Version~3 tests a deliberately weaker Level-C proxy: whether literal
+source-graph features predict an already-fixed lexical extraction label in
+family-disjoint public documents. It cannot validate a proof strategy because
+the labels have not received independent semantic adjudication.
+
+This separation follows causal-abstraction theory and benchmark work requiring
+intervention against known causal targets \citep{geiger2025causal,mueller2025mib}.
+KisMATH demonstrates graph-aligned interventions in accessible models, but
+uses reasoning graphs and open models rather than a selected publication archive
+\citep{saha2026kismath}. Public mathematical prose is not a faithful readout of
+hidden computation merely because it is coherent \citep{turpin2023language}.
+Consequently, no arrow in Figure~\ref{fig:overview} is an arrow into the
+unreleased OpenAI producer.
 
 The release contains public outputs and supporting artifacts. It does not
 release weights, activations, attention patterns, optimizer state, complete
@@ -323,6 +347,73 @@ it is neither a semantic annotation nor evidence of a mathematical dependency.}
 \label{fig:v2-motifs}
 \end{figure}
 
+\subsection{Family-disjoint functional reconstruction proxy}
+
+We froze a single exploratory prediction task before inspecting Version~3
+outcomes. The target is the extractor's fixed lexical \emph{induction} label,
+not a semantic strategy label. The unit is an extracted node; the held-out
+unit is a result family, with each unlinked document kept as its own group.
+The structural logistic model receives node kind, within-document position,
+document size, and literal-reference in/out degree. It never receives source
+text, the matching words, document identifiers, or the target label. Matched
+metadata-only and degree-permuted-structure controls use the same split and
+model capacity.
+
+The held-out set contains 8,541 nodes from 80 groups, with a 5.5\% induction
+label rate. The structural model obtains AUROC \VThreeFunctionalAUROC{},
+versus \VThreeMetadataAUROC{} for metadata and 0.71 after degree permutation.
+The structure-minus-metadata AUROC difference is 0.028 (group bootstrap 95\%
+CI 0.010--0.045). Figure~\ref{fig:v3-functional} visualizes the fixed
+comparison. This modest association survives these controls, but does not
+separate reusable proof strategies from mathematical conventions, editing, or
+source-selection effects. It is therefore not evidence for Level-B strategy
+reconstruction.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.70\linewidth]{v3_functional_prediction.pdf}
+\caption{Held-out prediction of a lexical \emph{induction} extraction label.
+The graph-feature model exceeds matched metadata and degree-permuted controls,
+but the target remains a reproducible source-text label rather than a verified
+proof strategy.}
+\label{fig:v3-functional}
+\end{figure}
+
+\subsection{Controlled hidden-process identifiability}
+
+To test whether an output-only reconstruction can identify an otherwise hidden
+producer, we generated 1,440 synthetic artifacts from six known process
+families, froze their hidden labels, and supplied the reconstruction classifier
+only observable motif, reference-count, length, and node-kind fields. Overall
+held-out process accuracy was \VThreeOrganismAccuracy{}. Crucially, two
+different producers were defined with exactly the same observable law. Their
+identity accuracy was \VThreeEquivalenceAccuracy{}, below the 0.50 chance
+reference (Figure~\ref{fig:v3-identifiability}). The controlled negative
+result establishes an equivalence class: distinct processes cannot be recovered
+when the available observations are deliberately identical. It calibrates an
+identifiability limitation; it says nothing about which process produced the
+OpenAI corpus.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.72\linewidth]{v3_identifiability.pdf}
+\caption{Known-process model organisms. Easily distinguishable synthetic
+producers can be classified, while the intentionally observationally
+equivalent pair cannot. This is a calibration experiment, not an attribution
+test for OpenAI.}
+\label{fig:v3-identifiability}
+\end{figure}
+
+\subsection{Finite arithmetic counterfactual checks}
+
+We also generated \VThreeCounterfactualCases{} concrete integer-arithmetic
+variants of 120 base examples: original, commuted, changed-hypothesis, and
+invalid-conclusion forms. Exact Python integer checks agreed with all declared
+statuses (360 valid and 120 invalid). This is a finite computational check, not
+a Lean-kernel certificate or an audit of informal semantic fidelity. It is
+therefore excluded from causal evaluation, consistent with documented formal
+benchmark failure modes \citep{ammanamanchi2026faults}.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=.78\linewidth]{trace_text_volume.pdf}
@@ -394,12 +485,13 @@ Transformer was trained on its evaluation table, so its result is methodological
 rather than evidence of abstract reasoning. Most importantly, public output
 artifacts cannot identify mechanisms inside an unreleased model.
 
-Version~2 remains partial. Its source-structure outputs meet the corpus
-integrity and provenance portion of G1 and provide a documented exploratory
-input for G2, but they have not been independently semantically audited.
-G3--G7 have not been entered: no valid counterfactual benchmark, behavioral
-competence result, held-out predictive comparison, causal intervention result,
-or robustness result exists. CPU-only PyTorch, no cached open-weight model,
+Version~3 remains limited. Its source-structure outputs meet corpus integrity
+and provide a documented exploratory input for G2, but they have not been
+independently semantically audited. The finite arithmetic cases give only a
+partial G3 check; they are not Lean-checked. The family-disjoint label
+prediction and model-organism equivalence control make G7 partial. G4--G6 are
+blocked: no eligible open-weight model, behavioral-competence result, or new
+causal intervention exists. CPU-only PyTorch, no cached open-weight model,
 and no detected Lean toolchain are recorded infrastructure constraints, not
 negative scientific findings.
 
@@ -446,11 +538,12 @@ are sufficient and robust within the tested model population for behaviors the
 release makes observable.
 
 The contribution is therefore a reproducible bridge from public mathematical
-artifacts to falsifiable mechanistic-interpretability research: public outputs
-define the phenomenon to be explained, while interventions in accessible models
-supply the evidence required to explain it. Keeping those evidence types
-separate is not a retreat from impact; it is what makes a scalable, cumulative
-research program possible.
+artifacts to falsifiable research on source structure. The bounded predictive
+gain is retained as an empirical result, while the controlled equivalence
+failure prevents it from becoming a claim about the producer process.
+Interventions in accessible models would still be needed for a mechanistic
+claim. Keeping these evidence types separate makes the work cumulative rather
+than promotional.
 
 \section*{Reproducibility and ethics}
 
