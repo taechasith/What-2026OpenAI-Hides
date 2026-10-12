@@ -8,7 +8,7 @@ python -m oai_math_study.surrogate --root .
 tools\tectonic\tectonic.exe -X compile paper/main.tex --outdir paper --keep-logs --keep-intermediates
 ```
 
-Run `python scripts\build_release.py` to produce
-`release/arxiv_submission.zip`. The archive contains only manuscript
+Run `python scripts\build_release.py` to produce the release source archive.
+The archive contains only manuscript
 source, generated result inputs, bibliography, and figure PDFs. It excludes the
 third-party corpus.
