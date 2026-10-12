@@ -35,6 +35,18 @@ are retained as availability failures; they are not silently dropped.
    label-permutation p-value (10,000 deterministic permutations).
 3. Describe, but do not infer from, the small, non-random trace subset.
 
+## Exploratory exhaustive release-tree extension
+
+The preregistered inclusion set and RQ1--RQ3 estimands above remain unchanged.
+`FULL_TREE_INVENTORY_PROTOCOL.md` separately specifies an exploratory,
+structural census of every versioned Git blob in the same pinned release. It
+uses the exact resolved commit rather than a mutable branch name and records
+path, Git object identifier, byte size, path/extension-based artifact role,
+and catalogue/summary relation for every blob. This extension establishes
+release-tree coverage and organization only; it does not semantically read or
+validate every mathematical claim, compile Lean, or expand the corpus to all
+OpenAI research outside `openai/math`.
+
 ## Interpretation and inferential limits
 
 Coverage is an artifact property, not a validation rate. The observational

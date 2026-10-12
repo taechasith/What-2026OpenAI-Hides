@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import mannwhitneyu
 
-from .corpus import parse_catalogue, parse_traces, repository_manifest, rows
+from .corpus import full_tree_inventory, parse_catalogue, parse_traces, repository_manifest, rows
 
 
 SEED = 20261009
@@ -84,6 +84,7 @@ def make_figures(
     families: list[dict[str, object]],
     manuscripts: list[dict[str, object]],
     traces: list[dict[str, object]],
+    full_tree: dict[str, object],
 ) -> None:
     figures.mkdir(parents=True, exist_ok=True)
     teal, orange, slate = "#007C91", "#E58606", "#4C566A"
@@ -132,13 +133,40 @@ def make_figures(
         fig.savefig(figures / f"trace_text_volume.{suffix}", dpi=240, bbox_inches="tight")
     plt.close(fig)
 
+    top_level = list(full_tree["by_top_level"])
+    roles = list(full_tree["by_artifact_role"])
+    fig, axes = plt.subplots(1, 2, figsize=(10.2, 4.7), constrained_layout=True)
+    for axis, entries, field in (
+        (axes[0], top_level, "top_level"),
+        (axes[1], roles, "artifact_role"),
+    ):
+        labels = [str(entry[field]) for entry in entries]
+        values = [int(entry["files"]) for entry in entries]
+        order = np.argsort(values)
+        axis.barh(np.array(labels)[order], np.array(values)[order], color=teal)
+        axis.set_xscale("log")
+        axis.set_xlabel("Files (log scale)")
+        axis.tick_params(axis="y", labelsize=8)
+    axes[0].set_title("Release tree")
+    axes[1].set_title("Path/extension role")
+    fig.suptitle("Exhaustive public release-tree inventory", fontsize=12)
+    for suffix in ("png", "pdf"):
+        fig.savefig(figures / f"full_tree_composition.{suffix}", dpi=240, bbox_inches="tight")
+    plt.close(fig)
 
-def write_latex_generated(output: Path, stats: dict[str, object], traces: list[dict[str, object]]) -> None:
+
+def write_latex_generated(
+    output: Path,
+    stats: dict[str, object],
+    traces: list[dict[str, object]],
+    full_tree: dict[str, object],
+) -> None:
     generated = output / "paper" / "generated"
     generated.mkdir(parents=True, exist_ok=True)
     comparison = stats["comparison"]
     trace_words = [int(row["extracted_words"]) for row in traces]
     trace_pages = [int(row["pages"]) for row in traces]
+    role_counts = {str(row["artifact_role"]): int(row["files"]) for row in full_tree["by_artifact_role"]}
     macros = [
         f"\\newcommand{{\\TotalFamilies}}{{{stats['families']}}}",
         f"\\newcommand{{\\TotalManuscripts}}{{{stats['manuscripts']}}}",
@@ -152,6 +180,11 @@ def write_latex_generated(output: Path, stats: dict[str, object], traces: list[d
         f"\\newcommand{{\\TraceMaxWords}}{{{max(trace_words):,}}}",
         f"\\newcommand{{\\TraceMinPages}}{{{min(trace_pages)}}}",
         f"\\newcommand{{\\TraceMaxPages}}{{{max(trace_pages)}}}",
+        f"\\newcommand{{\\TreeBlobs}}{{{int(full_tree['tree_blobs_indexed']):,}}}",
+        f"\\newcommand{{\\TreeGiB}}{{{int(full_tree['total_bytes']) / 1024 ** 3:.2f}}}",
+        f"\\newcommand{{\\LeanSourceFiles}}{{{role_counts.get('lean_source', 0):,}}}",
+        f"\\newcommand{{\\PreprintTexFiles}}{{{role_counts.get('preprint_tex_source', 0):,}}}",
+        f"\\newcommand{{\\PreprintPdfFiles}}{{{role_counts.get('preprint_pdf', 0):,}}}",
     ]
     (generated / "results_macros.tex").write_text("\n".join(macros) + "\n", encoding="utf-8")
     linebreak = r"\\"
@@ -170,14 +203,29 @@ def write_latex_generated(output: Path, stats: dict[str, object], traces: list[d
         "\\end{tabular}",
     ]
     (generated / "coverage_table.tex").write_text("\n".join(rows_tex) + "\n", encoding="utf-8")
+    tree_rows = [
+        "\\begin{tabular}{lr}",
+        "\\toprule",
+        "Exhaustive tree inventory & Count " + linebreak,
+        "\\midrule",
+        f"All Git blobs & {int(full_tree['tree_blobs_indexed']):,} {linebreak}",
+        f"Lean source files & {role_counts.get('lean_source', 0):,} {linebreak}",
+        f"Preprint TeX source files & {role_counts.get('preprint_tex_source', 0):,} {linebreak}",
+        f"Preprint PDFs & {role_counts.get('preprint_pdf', 0):,} {linebreak}",
+        f"Named released summaries & {int(full_tree['named_released_summaries'])} {linebreak}",
+        "\\bottomrule",
+        "\\end{tabular}",
+    ]
+    (generated / "full_tree_table.tex").write_text("\n".join(tree_rows) + "\n", encoding="utf-8")
 
 
 def run(root: Path, corpus: Path) -> dict[str, object]:
     output = root / "data" / "derived"
     output.mkdir(parents=True, exist_ok=True)
     manifest = repository_manifest(corpus)
-    families_objects, manuscripts_objects, warnings = parse_catalogue(corpus)
-    traces, trace_warnings = parse_traces(corpus)
+    pinned_ref = str(manifest["commit"])
+    families_objects, manuscripts_objects, warnings = parse_catalogue(corpus, pinned_ref)
+    traces, trace_warnings = parse_traces(corpus, pinned_ref)
     warnings.extend(trace_warnings)
     families, manuscripts = rows(families_objects), rows(manuscripts_objects)
     if not families or not manuscripts:
@@ -186,22 +234,34 @@ def run(root: Path, corpus: Path) -> dict[str, object]:
         raise RuntimeError("Duplicate family identifiers after parsing")
     if not traces:
         raise RuntimeError("No released trace entries parsed")
+    full_records, full_tree = full_tree_inventory(corpus, manuscripts_objects, traces, pinned_ref)
+    if int(full_tree["tree_blobs_indexed"]) != int(manifest["tree_blob_count"]):
+        raise RuntimeError("full-tree inventory does not cover every Git blob")
+    full_tree.update({"source_commit": pinned_ref, "source_tree": manifest["tree"]})
     manifest.update({
         "parsed_families": len(families),
         "parsed_manuscripts": len(manuscripts),
         "parsed_released_traces": len(traces),
+        "full_tree_inventory": {
+            "tree_blobs_indexed": full_tree["tree_blobs_indexed"],
+            "total_bytes": full_tree["total_bytes"],
+            "inventory_classifier": full_tree["inventory_classifier"],
+            "source_tree": manifest["tree"],
+        },
     })
     stats = coverage_stats(families, manuscripts)
     write_csv(output / "families.csv", families)
     write_csv(output / "manuscripts.csv", manuscripts)
     write_csv(output / "trace_metrics.csv", traces)
     write_csv(output / "parse_warnings.csv", warnings)
+    write_csv(output / "full_tree_inventory.csv", full_records)
+    (output / "full_tree_summary.json").write_text(json.dumps(full_tree, indent=2) + "\n", encoding="utf-8")
     (output / "corpus_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     (output / "summary_statistics.json").write_text(json.dumps(stats, indent=2) + "\n", encoding="utf-8")
     figures = root / "figures"
-    make_figures(figures, families, manuscripts, traces)
-    write_latex_generated(root, stats, traces)
-    return {"manifest": manifest, "stats": stats, "warnings": warnings}
+    make_figures(figures, families, manuscripts, traces, full_tree)
+    write_latex_generated(root, stats, traces, full_tree)
+    return {"manifest": manifest, "stats": stats, "full_tree": full_tree, "warnings": warnings}
 
 
 def main() -> None:
